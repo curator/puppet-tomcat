@@ -1,0 +1,16 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    nanliu/staging (0.3.1)
+
+GIT
+  remote: https://github.com/puppetlabs/puppetlabs-stdlib.git
+  ref: master
+  sha: dacdfaac7ffb4175cf112415886d92f24c12edc7
+  specs:
+    puppetlabs/stdlib (4.1.0)
+
+DEPENDENCIES
+  nanliu/staging (= 0.3.1)
+  puppetlabs/stdlib (>= 0)
+
