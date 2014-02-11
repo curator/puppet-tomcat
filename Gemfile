@@ -7,7 +7,9 @@ group :rake do
   gem 'puppet-lint',                  '>=0.1.12'
   gem 'puppetlabs_spec_helper'
   gem 'puppet-blacksmith',            '>=1.0.5'
-  gem 'librarian-puppet',  '>=0.9.10'
+  gem 'librarian-puppet',             '>=0.9.10'
   gem 'rspec-system-puppet'
   gem 'rspec-system-serverspec'
+  gem 'travis'
+  gem 'vagrant-fixed-ssh'
 end
