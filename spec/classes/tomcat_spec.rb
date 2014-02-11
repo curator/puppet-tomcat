@@ -7,5 +7,9 @@ describe 'tomcat', :type => :class do
         :osfamily   =>  'GNU/Linux'
       }
     end
+
+    it 'should send an *unsupported* error' do
+    end
+
   end
 end
