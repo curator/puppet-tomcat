@@ -24,18 +24,22 @@
 # === Examples
 #
 #  class { tomcat:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
+#    install_java   => false,
+#    version        => '7',
+#    source         => 'http://peaches.me/tomcat/apache-tomcat-7.0.19.tar.gz'
 #  }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Preston Norvell <preston.norvell@gettyimages.com>
+# Andrew Nelson   <andrew.nelson@gettyimages.com>
 #
 # === Copyright
 #
-# Copyright 2014 Your name here, unless otherwise noted.
+# Copyright 2014 Getty Images, Inc.
 #
 class tomcat {
 
+  notice('Doing some stuff')
 
 }
