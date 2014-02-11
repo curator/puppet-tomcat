@@ -9,7 +9,6 @@ group :test do
   gem 'travis'
   gem 'vagrant-fixed-ssh'
   gem "rspec-system-serverspec"
-  gem "rspec-system-puppet"
-  gem "puppetlabs_spec_helper"
   gem "rake", '10.1.0'
+  gem 'puppet-blacksmith', '>=1.0.5'
 end
