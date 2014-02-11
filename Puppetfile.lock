@@ -2,7 +2,9 @@ FORGE
   remote: http://forge.puppetlabs.com
   specs:
     nanliu/staging (0.3.1)
+    puppetlabs/stdlib (4.1.0)
 
 DEPENDENCIES
   nanliu/staging (= 0.3.1)
+  puppetlabs/stdlib (>= 0)
 

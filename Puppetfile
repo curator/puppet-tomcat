@@ -7,3 +7,4 @@ forge 'http://forge.puppetlabs.com'
 ################################################################################
 
 mod 'nanliu/staging',               '0.3.1'
+mod 'puppetlabs/stdlib'
