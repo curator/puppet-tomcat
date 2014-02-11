@@ -1,5 +1,4 @@
 require 'bundler'
-#Bundler.require(:rake)
 require 'rake/clean'
 
 CLEAN.include('spec/fixtures/manifests/', 'spec/fixtures/modules/', 'doc', 'pkg')
