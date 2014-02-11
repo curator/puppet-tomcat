@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'bundler'
 Bundler.require(:rake)
 require 'rake/clean'
