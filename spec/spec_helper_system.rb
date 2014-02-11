@@ -12,4 +12,9 @@ RSpec.configure do |c|
 
   c.include RSpecSystemPuppet::Helpers
 
+  c.before(:each) do
+    Puppet::Util::Log.level = :warning
+    Puppet::Util::Log.newdestination(:console)
+  end
+
 end
