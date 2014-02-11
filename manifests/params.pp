@@ -8,7 +8,7 @@ class tomcat::params {
   } elsif $::osfamily == 'debian' {
     warning('Debian/Ubuntu support may be coming soon.  Feel free to add it.')
   } else {
-    error("Unsupported osfamily ${::osfamily}.")
+    fail("Unsupported osfamily ${::osfamily}.")
   }
 
 }
