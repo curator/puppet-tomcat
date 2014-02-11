@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-group :rake do
-  gem 'puppet',                       '>=2.7.20'
-  gem 'rspec-puppet',                 '>=0.1.3'
-  gem 'rake',                         '>=0.9.2.2'
-  gem 'puppet-lint',                  '>=0.1.12'
+group :test do
+  gem 'puppet'
   gem 'puppetlabs_spec_helper'
-  gem 'puppet-blacksmith',            '>=1.0.5'
-  gem 'librarian-puppet',             '>=0.9.10'
+  gem 'hiera-puppet-helper'
   gem 'rspec-system-puppet'
-  gem 'rspec-system-serverspec'
+  gem 'serverspec'
   gem 'travis'
   gem 'vagrant-fixed-ssh'
+  gem "rspec-system-serverspec"
+  gem "rspec-system-puppet"
+  gem "puppetlabs_spec_helper"
+  gem "rake", '10.1.0'
 end
