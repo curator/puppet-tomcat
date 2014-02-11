@@ -38,8 +38,8 @@
 #
 # Copyright 2014 Getty Images, Inc.
 #
-class tomcat {
+class tomcat inherits tomcat::params {
 
-  notice('Doing some stuff')
+  notice('In the init')
 
 }

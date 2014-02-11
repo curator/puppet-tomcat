@@ -9,6 +9,7 @@ describe 'tomcat', :type => :class do
     end
 
     it 'should send an *unsupported* error' do
+      expect { should compile }.to raise_error(Puppet::Error, /Unsupported/)
     end
 
   end
