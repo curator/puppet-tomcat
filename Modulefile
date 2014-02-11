@@ -6,3 +6,7 @@ license 'MIT'
 summary 'Puppet module for Apache Tomcat'
 description 'Puppet module for Apache Tomcat'
 project_page 'https://github.com/curator/puppet-tomcat'
+
+## Add dependencies, if any:
+dependency 'nanliu/staging',    '>= 0.3.1'
+dependency 'puppetlabs/stdlib', '>= 2.4.0'
