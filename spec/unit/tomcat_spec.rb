@@ -39,8 +39,8 @@ describe 'tomcat', :type => :class do
     end
 
     context 'When installing/managing java' do
-      let :hiera_data  do
-        { tomcat::install_java    => true }
+      let :params_data  do
+        { :install_java    => true }
       end
 
       it 'should install a java package' do
