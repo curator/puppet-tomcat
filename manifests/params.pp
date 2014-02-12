@@ -3,10 +3,12 @@
 #
 class tomcat::params {
 
-  if $::osfamily == 'RedHat' or $::operatingsystem == 'amazon' {
-    notice('Yay! we can do stuff')
+  if $::osfamily == 'redhat' or $::operatingsystem == 'amazon' {
+
+    $install_java = true
+
   } elsif $::osfamily == 'debian' {
-    warning('Debian/Ubuntu support may be coming soon.  Feel free to add it.')
+    fail('Debian/Ubuntu support may be coming soon.  Feel free to add it.')
   } else {
     fail("Unsupported osfamily ${::osfamily}.")
   }
