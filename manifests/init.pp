@@ -25,8 +25,8 @@
 #
 #  class { tomcat:
 #    install_java   => false,
-#    version        => '7',
-#    source         => 'http://peaches.me/tomcat/apache-tomcat-7.0.19.tar.gz'
+#    tomcat_version => '7.0.50',
+#    source         => 'http://peaches.me/tomcat/apache-tomcat-7.0.50.tar.gz'
 #  }
 #
 # === Authors
@@ -38,8 +38,23 @@
 #
 # Copyright 2014 Getty Images, Inc.
 #
-class tomcat inherits tomcat::params {
+class tomcat (
+  $install_java   =   $tomcat::params::install_java,
+  $tomcat_version =   $tomcat::params::tomcat_version,
+  $java_home      =   $tomcat::params::java_home
+  ) inherits tomcat::params {
 
-  notice('In the init')
-
+  if $install_java {
+    if ! defined(Package['java-1.7.0-openjdk']){
+      package { 'java-1.7.0-openjdk':
+        ensure => latest,
+      }
+    }
+    if ! defined(Package['java-1.7.0-openjdk-devel']){
+      package { 'java-1.7.0-openjdk-devel':
+        ensure  => latest,
+        require => Package['java-1.7.0-openjdk'],
+      }
+    }
+  }
 }
