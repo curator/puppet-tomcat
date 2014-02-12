@@ -10,7 +10,6 @@ group :test do
   gem 'librarian-puppet'
   gem 'rspec-system-puppet'
   gem "rspec-system-serverspec"
-  gem 'hiera-puppet-helper'
   gem 'serverspec'
   gem 'travis'
   gem 'vagrant-fixed-ssh'
