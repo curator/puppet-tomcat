@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'tomcat::install::staging', :type => :class do
+describe 'tomcat::install::archive', :type => :class do
 
   let :params_data  do
     {

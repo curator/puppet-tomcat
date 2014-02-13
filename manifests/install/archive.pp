@@ -1,7 +1,7 @@
-# Class: tomcat::install::staging
+# Class: tomcat::install::archive
 #
 #
-class tomcat::install::staging (
+class tomcat::install::archive (
   $tar_source_uri =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
   $version        =   '7.0.50',
   $unpack_dir     =   '/usr/local/src'
