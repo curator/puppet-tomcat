@@ -4,9 +4,9 @@ describe 'tomcat::install::archive', :type => :class do
 
   let :params_data  do
     {
-      :tar_source_uri => 'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
-      :version        => '7.0.50',
-      :unpack_dir     => '/usr/local/src'
+      :tar_source_uri       => 'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
+      :version              => '7.0.50',
+      :tar_download_dir     => '/usr/local/src'
     }
   end
 

@@ -43,7 +43,7 @@ class tomcat (
   $version                  =   '7.0.50',
   $package_provider         =   'staging',
   $tar_source_uri           =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
-  $unpack_dir               =   '/usr/local/src'
+  $tar_download_dir         =   '/usr/local/src'
   ) inherits tomcat::params {
 
   class { 'tomcat::install':
@@ -51,7 +51,7 @@ class tomcat (
     version           => $version,
     package_provider  => $package_provider,
     tar_source_uri    => $tar_source_uri,
-    unpack_dir        => $unpack_dir
+    tar_download_dir  => $tar_download_dir
   }
 
 }
