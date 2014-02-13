@@ -39,22 +39,19 @@
 # Copyright 2014 Getty Images, Inc.
 #
 class tomcat (
-  $install_java   =   $tomcat::params::install_java,
-  $tomcat_version =   $tomcat::params::tomcat_version,
-  $java_home      =   $tomcat::params::java_home
+  $install_java             =   true,
+  $version                  =   '7.0.50',
+  $package_provider         =   'staging',
+  $tar_source_uri           =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
+  $unpack_dir               =   '/usr/local/src'
   ) inherits tomcat::params {
 
-  if $install_java {
-    if ! defined(Package['java-1.7.0-openjdk']){
-      package { 'java-1.7.0-openjdk':
-        ensure => latest,
-      }
-    }
-    if ! defined(Package['java-1.7.0-openjdk-devel']){
-      package { 'java-1.7.0-openjdk-devel':
-        ensure  => latest,
-        require => Package['java-1.7.0-openjdk'],
-      }
-    }
+  class { 'tomcat::install':
+    install_java      => $install_java,
+    version           => $version,
+    package_provider  => $package_provider,
+    tar_source_uri    => $tar_source_uri,
+    unpack_dir        => $unpack_dir
   }
+
 }
