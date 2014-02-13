@@ -26,4 +26,8 @@ class tomcat::install::staging (
     require => Staging::File["apache-tomcat-${version}"],
   }
 
+  # Relationships
+  Class['::staging']                      -> Staging::File["apache-tomcat-$version"]
+  Staging::File["apache-tomcat-$version"] -> Staging::Extract[$basename]
 }
+
