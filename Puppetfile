@@ -6,5 +6,5 @@ forge 'http://forge.puppetlabs.com'
 # *** ALWAYS ALWAYS ALWAYS use a version reference... ALWAYS. **************** #
 ################################################################################
 
-mod 'nanliu/staging',               '0.3.1'
 mod 'puppetlabs/stdlib'
+mod 'camptocamp/archive'

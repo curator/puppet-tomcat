@@ -2,11 +2,12 @@
 #
 #
 class tomcat::install (
-  $install_java       =   true,
-  $version            =   '7.0.50',
-  $package_provider   =   'staging',
-  $tar_source_uri     =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
-  $tar_download_dir   =   '/usr/local/src'
+  $install_java         =   true,
+  $version              =   '7.0.50',
+  $package_provider     =   'archive',
+  $archive_source_uri   =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
+  $archive_download_dir =   '/usr/local/src',
+  $archive_target_dir   =   undef
   ) {
 
   if $install_java {
@@ -26,11 +27,12 @@ class tomcat::install (
     }
   } # End install java
 
-  if $package_provider == 'staging' {
-    class { 'tomcat::install::staging':
-      tar_source_uri   =>  $tar_source_uri,
-      version          =>  $version,
-      tar_download_dir =>  $tar_download_dir
+  if $package_provider == 'archive' {
+    class { 'tomcat::install::archive':
+      archive_source_uri   =>  $archive_source_uri,
+      version              =>  $version,
+      archive_download_dir =>  $archive_download_dir,
+      archive_target_dir   =>  $archive_target_dir
     }
   }
 

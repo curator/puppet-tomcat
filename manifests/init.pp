@@ -39,19 +39,21 @@
 # Copyright 2014 Getty Images, Inc.
 #
 class tomcat (
-  $install_java             =   true,
-  $version                  =   '7.0.50',
-  $package_provider         =   'staging',
-  $tar_source_uri           =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
-  $tar_download_dir         =   '/usr/local/src'
+  $install_java         =   true,
+  $version              =   '7.0.50',
+  $package_provider     =   'archive',
+  $archive_source_uri   =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
+  $archive_download_dir =   '/usr/local/src',
+  $archive_target_dir   =   undef
   ) inherits tomcat::params {
 
   class { 'tomcat::install':
-    install_java      => $install_java,
-    version           => $version,
-    package_provider  => $package_provider,
-    tar_source_uri    => $tar_source_uri,
-    tar_download_dir  => $tar_download_dir
+    install_java         => $install_java,
+    version              => $version,
+    package_provider     => $package_provider,
+    archive_source_uri   => $archive_source_uri,
+    archive_download_dir => $archive_download_dir,
+    archive_target_dir   => $archive_target_dir
   }
 
 }
