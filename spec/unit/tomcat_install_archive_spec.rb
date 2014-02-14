@@ -9,12 +9,23 @@ describe 'tomcat::install::archive', :type => :class do
       :archive_download_dir => '/usr/local/src'
     }
   end
-
   it "Should download and untar the specified version's tarball" do
    should contain_archive('apache-tomcat-7.0.50')
   end
 
-  pending 'Create the specified tomcat user'
+  let :params do
+    {
+      :manage_group         => true,
+      :tomcat_group         => 'conehead',
+      :manage_user          => true,
+      :tomcat_user          => 'conehead'
+    }
+  end
+  it "If manage_group is true, it should create group if not already defined" do
+    should contain_group('conehead')
+    should contain_user('conehead')
+  end
+
   pending 'Chown the directories to the tomcat user'
   pending 'Set perms on tomcat directory(ies)'
   describe '... on RedHat-ish' do
