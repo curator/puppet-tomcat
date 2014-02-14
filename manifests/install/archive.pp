@@ -8,9 +8,8 @@ class tomcat::install::archive (
   $archive_target_dir   =   undef
   ) {
 
-  # Bleh way to default to /opt/tomcat${tomcat_maj_version} due to variable interpolation issues
-  $tomcat_version_bits = split($version,'[.]')
-  $tomcat_maj_version = $tomcat_version_bits[0]
+  # XXX Bleh way to default to /opt/tomcat${tomcat_maj_version} due to variable interpolation issues
+  $tomcat_maj_version = regsubst($version, '^([0-9]+[.]).*$', '\1')
   if ! $archive_target_dir {
     $target_dir = "/opt/tomcat${tomcat_maj_version}"
   } else {
