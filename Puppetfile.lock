@@ -2,9 +2,11 @@ FORGE
   remote: http://forge.puppetlabs.com
   specs:
     camptocamp/archive (0.0.1)
+    hunner/pry (1.0.0)
     puppetlabs/stdlib (4.1.0)
 
 DEPENDENCIES
   camptocamp/archive (>= 0)
+  hunner/pry (>= 0)
   puppetlabs/stdlib (>= 0)
 

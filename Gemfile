@@ -12,5 +12,6 @@ group :test do
   gem "rspec-system-serverspec"
   gem 'serverspec'
   gem 'travis'
+  gem 'pry'
   gem 'vagrant-fixed-ssh'
 end

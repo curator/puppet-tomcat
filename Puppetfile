@@ -8,3 +8,4 @@ forge 'http://forge.puppetlabs.com'
 
 mod 'puppetlabs/stdlib'
 mod 'camptocamp/archive'
+mod 'hunner/pry'

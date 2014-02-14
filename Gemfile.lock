@@ -163,6 +163,7 @@ PLATFORMS
 
 DEPENDENCIES
   librarian-puppet
+  pry
   puppet
   puppet-blacksmith (>= 1.0.5)
   puppet-lint (>= 0.1.12)
