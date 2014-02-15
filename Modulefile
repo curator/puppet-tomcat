@@ -10,3 +10,4 @@ project_page 'https://github.com/curator/puppet-tomcat'
 ## Add dependencies, if any:
 dependency 'puppetlabs/stdlib',  '>= 2.4.0'
 dependency 'camptocamp/archive', '>= 0.0.1'
+dependency 'hunner/pry'

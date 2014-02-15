@@ -2,37 +2,31 @@
 #
 #
 class tomcat::install::archive (
-  $archive_source_uri   =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
-  $version              =   '7.0.50',
-  $archive_download_dir =   '/usr/local/src',
-  $archive_target_dir   =   undef,
-  $manage_user          =   true,
-  $tomcat_user          =   'tomcat',
-  $manage_group         =   true,
-  $tomcat_group         =   'tomcat'
+  $archive_source_uri     =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
+  $version                =   '7.0.50',
+  $archive_download_dir   =   '/usr/local/src',
+  $archive_target_dir     =   undef,
+  $manage_user            =   true,
+  $tomcat_user            =   'tomcat',
+  $manage_group           =   true,
+  $tomcat_group           =   'tomcat',
+  $remove_default_apps    =   true,
+  $remove_default_manager =   true
   ) {
 
   # XXX Bleh way to default to /usr/share/tomcat${tomcat_maj_version} due to variable interpolation issues
-  $tomcat_maj_version = regsubst($version, '^([0-9]+[.]).*$', '\1')
+  $tomcat_maj_version = regsubst($version, '^([0-9]+)[.].*$', '\1')
   if ! $archive_target_dir {
     $target_dir = "/usr/share/tomcat${tomcat_maj_version}"
   } else {
     $target_dir = $archive_target_dir
   }
 
-  archive { "apache-tomcat-${version}":
-    ensure           => present,
-    url              => $archive_source_uri,
-    follow_redirects => true,
-    extension        => 'tar.gz',
-    src_target       => $archive_download_dir,
-    target           => $archive_target_dir
-  }
-
   if $manage_group {
     if ! defined(Group[$tomcat_group]) {
       group { $tomcat_group:
         ensure  => present,
+        system  => true,
       }
     }
   }
@@ -42,10 +36,59 @@ class tomcat::install::archive (
       user { $tomcat_user:
         ensure  => present,
         gid     => $tomcat_group,
+        system  => true,
+        before  => File[$target_dir]
       }
     }
   }
 
+  archive { "apache-tomcat-${version}":
+    ensure           => present,
+    url              => $archive_source_uri,
+    follow_redirects => true,
+    extension        => 'tar.gz',
+    src_target       => $archive_download_dir,
+    target           => $target_dir
+  }
+
+
+  # Remove the default tomcat apps?
+  $default_apps = [
+    "${target_dir}/webapps/docs",
+    "${target_dir}/webapps/examples",
+    "${target_dir}/webapps/ROOT",
+  ]
+  if $remove_default_apps {
+    file { $default_apps:
+      ensure  => absent,
+      recurse => true,
+      purge   => true,
+      force   => true,
+      require => Archive["apache-tomcat-${version}"]
+    }
+  }
+
+  # Remove the default manager app?
+  $manager_apps = [
+    "${target_dir}/webapps/manager",
+    "${target_dir}/webapps/host-manager"
+  ]
+  if $remove_default_manager {
+    file { $manager_apps:
+      ensure  => absent,
+      recurse => true,
+      purge   => true,
+      force   => true,
+      require => Archive["apache-tomcat-${version}"]
+    }
+  }
+
+  file { $target_dir:
+    ensure    => directory,
+    owner     => $tomcat_user,
+    group     => $tomcat_group,
+    recurse   => true
+  }
 
   # Relationships
   Group[$tomcat_group] -> User[$tomcat_user]
