@@ -17,5 +17,4 @@ RSpec.configure do |c|
     Puppet::Util::Log.newdestination(:console)
   end
 
-
 end
