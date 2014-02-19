@@ -11,7 +11,7 @@ group :development, :test do
   gem 'travis',                 :require => false
   gem 'travis-lint',            :require => false
   gem 'pry',                    :require => false
-  gem 'puppet-syntax',          :require => false
+  gem 'puppet-syntax',          :require => false, :git => 'git://github.com/curator/puppet-syntax.git', :branch => 'puppet_3_fix'
   gem 'librarian-puppet',       :require => false
 end
 

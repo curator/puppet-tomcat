@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/curator/puppet-syntax.git
+  revision: 3e445cd4cd7de1e2a290e75fd91e6c096dabfb43
+  branch: puppet_3_fix
+  specs:
+    puppet-syntax (1.1.0)
+      puppet (>= 2.7.0)
+      rake
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -78,9 +87,6 @@ GEM
       puppet (>= 2.7.16)
       rest-client
     puppet-lint (0.3.2)
-    puppet-syntax (1.1.0)
-      puppet (>= 2.7.0)
-      rake
     puppetlabs_spec_helper (0.4.1)
       mocha (>= 0.10.5)
       rake
@@ -155,7 +161,7 @@ DEPENDENCIES
   puppet
   puppet-blacksmith
   puppet-lint
-  puppet-syntax
+  puppet-syntax!
   puppetlabs_spec_helper
   rake
   rspec-puppet
