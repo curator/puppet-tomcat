@@ -41,10 +41,8 @@ describe 'tomcat::install::archive', :type => :class do
     should contain_file('/usr/share/tomcat7/webapps/host-manager')
   end
 
-  describe '... on RedHat-ish' do
-    pending 'Place init script'
-    pending 'Set perms on init script'
-    pending 'Chkconfig init script on'
+  it 'should create a user-space startup/shutdown symlink' do
+    should contain_file('/usr/bin/dtomcat7')
   end
 
 end

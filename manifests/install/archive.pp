@@ -11,7 +11,7 @@ class tomcat::install::archive (
   $manage_group           =   true,
   $tomcat_group           =   'tomcat',
   $remove_default_apps    =   true,
-  $remove_default_manager =   true
+  $remove_default_manager =   true,
   ) {
 
   # XXX Bleh way to default to /usr/share/tomcat${tomcat_maj_version} due to variable interpolation issues
@@ -53,12 +53,12 @@ class tomcat::install::archive (
 
 
   # Remove the default tomcat apps?
-  $default_apps = [
-    "${target_dir}/webapps/docs",
-    "${target_dir}/webapps/examples",
-    "${target_dir}/webapps/ROOT",
-  ]
   if $remove_default_apps {
+    $default_apps = [
+      "${target_dir}/webapps/docs",
+      "${target_dir}/webapps/examples",
+      "${target_dir}/webapps/ROOT",
+    ]
     file { $default_apps:
       ensure  => absent,
       recurse => true,
@@ -69,11 +69,11 @@ class tomcat::install::archive (
   }
 
   # Remove the default manager app?
-  $manager_apps = [
-    "${target_dir}/webapps/manager",
-    "${target_dir}/webapps/host-manager"
-  ]
   if $remove_default_manager {
+    $manager_apps = [
+      "${target_dir}/webapps/manager",
+      "${target_dir}/webapps/host-manager"
+    ]
     file { $manager_apps:
       ensure  => absent,
       recurse => true,
@@ -83,6 +83,7 @@ class tomcat::install::archive (
     }
   }
 
+  # Chown files in $target_dir
   file { $target_dir:
     ensure    => directory,
     owner     => $tomcat_user,
@@ -90,7 +91,12 @@ class tomcat::install::archive (
     recurse   => true
   }
 
-  # Relationships
+  # Symlink to a moderately standard/
+  file { "/usr/bin/dtomcat${tomcat_maj_version}":
+    ensure  => link,
+    target  => "${target_dir}/bin/catalina.sh"
+  }
+
   Group[$tomcat_group] -> User[$tomcat_user]
 
 }
