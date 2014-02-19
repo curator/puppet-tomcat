@@ -4,11 +4,13 @@ describe 'tomcat::install', :type => :class do
 
   describe 'When installing via archive' do
     let :params do
-      { :package_provider   => 'archive'}
+      {
+        :package_provider   => 'archive',
+      }
     end
 
     it 'should use tomcat::install::archive' do
-      should contain_tomcat__install__archive('peaches')
+      should contain_tomcat__install__archive()
     end
   end
 

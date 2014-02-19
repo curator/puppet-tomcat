@@ -44,6 +44,7 @@ class tomcat (
   $package_name           =   undef,
   $additional_packages    =   undef,
   $version                =   '7.0.50',
+  $java_home              =   "/usr/lib/jvm/jre-1.7.0-openjdk.${::architecture}",
   $archive_download_dir   =   '/usr/local/src',
   $archive_target_dir     =   undef,
   $manage_user            =   true,

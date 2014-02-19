@@ -4,7 +4,7 @@ describe 'tomcat', :type => :class do
 
   let :params do
     {
-      :tomcat_version   => '7.0.50',
+      :version   => '7.0.50',
       :java_home        => '/usr/lib/jvm/jre-1.7.0-openjdk.x86_64'
     }
   end
@@ -34,9 +34,9 @@ describe 'tomcat', :type => :class do
   end
 
   context 'With an undefined package_name' do
-    let :params do
+    let :facts do
       {
-        :package_name => undef
+        :osfamily     => 'redhat'
       }
     end
 
