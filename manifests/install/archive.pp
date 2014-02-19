@@ -2,7 +2,7 @@
 #
 #
 class tomcat::install::archive (
-  $archive_source_uri     =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
+  $package_name           =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
   $version                =   '7.0.50',
   $archive_download_dir   =   '/usr/local/src',
   $archive_target_dir     =   undef,
@@ -44,7 +44,7 @@ class tomcat::install::archive (
 
   archive { "apache-tomcat-${version}":
     ensure           => present,
-    url              => $archive_source_uri,
+    url              => $package_name,
     follow_redirects => true,
     extension        => 'tar.gz',
     src_target       => $archive_download_dir,

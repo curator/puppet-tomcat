@@ -41,8 +41,9 @@
 class tomcat (
   $install_java           =   true,
   $package_provider       =   undef,
+  $package_name           =   undef,
+  $additional_packages    =   undef,
   $version                =   '7.0.50',
-  $archive_source_uri     =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
   $archive_download_dir   =   '/usr/local/src',
   $archive_target_dir     =   undef,
   $manage_user            =   true,
@@ -53,11 +54,16 @@ class tomcat (
   $remove_default_manager =   true
   ) inherits tomcat::params {
 
+  if ! $package_name {
+    fail('Failed because "package_name" parameter is required')
+  }
+
   class { 'tomcat::install':
     install_java           => $install_java,
     package_provider       => $package_provider,
+    package_name           => $package_name,
+    additional_packages    => $additional_packages,
     version                => $version,
-    archive_source_uri     => $archive_source_uri,
     archive_download_dir   => $archive_download_dir,
     archive_target_dir     => $archive_target_dir,
     manage_user            => $manage_user,

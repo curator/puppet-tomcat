@@ -4,8 +4,9 @@
 class tomcat::install (
   $install_java           =   true,
   $package_provider       =   undef,
+  $package_name           =   'apache-tomcat'
+  $additional_packages    =   undef,
   $version                =   '7.0.50',
-  $archive_source_uri     =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
   $archive_download_dir   =   '/usr/local/src',
   $archive_target_dir     =   undef,
   $manage_user            =   true,
@@ -33,19 +34,34 @@ class tomcat::install (
     }
   } # End install java
 
-  if $package_provider == 'archive' {
-    class { 'tomcat::install::archive':
-      version                =>  $version,
-      archive_source_uri     =>  $archive_source_uri,
-      archive_download_dir   =>  $archive_download_dir,
-      archive_target_dir     =>  $archive_target_dir,
-      manage_user            =>  $manage_user,
-      tomcat_user            =>  $tomcat_user,
-      manage_group           =>  $manage_group,
-      tomcat_group           =>  $tomcat_group,
-      remove_default_apps    =>  $remove_default_apps,
-      remove_default_manager =>  $remove_default_manager
+  if $package_provider {
+    if $package_provider == 'archive' {
+      class { 'tomcat::install::archive':
+        version                =>  $version,
+        package_name           =>  $package_name,
+        archive_download_dir   =>  $archive_download_dir,
+        archive_target_dir     =>  $archive_target_dir,
+        manage_user            =>  $manage_user,
+        tomcat_user            =>  $tomcat_user,
+        manage_group           =>  $manage_group,
+        tomcat_group           =>  $tomcat_group,
+        remove_default_apps    =>  $remove_default_apps,
+        remove_default_manager =>  $remove_default_manager
+      }
+    } else {
+      package { $package_name:
+        ensure    => $version,
+        provider  => $package_provider
+      }
+
+      if $additional_packages {
+        package { $additional_packages:
+          ensure    => installed,
+          provider  => $package_provider
+        }
+      }
     }
   }
 
-}
+
+} # End of class
