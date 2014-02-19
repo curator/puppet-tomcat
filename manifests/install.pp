@@ -3,7 +3,7 @@
 #
 class tomcat::install (
   $install_java           =   true,
-  $package_provider       =   'archive',
+  $package_provider       =   undef,
   $version                =   '7.0.50',
   $archive_source_uri     =   'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
   $archive_download_dir   =   '/usr/local/src',
