@@ -4,7 +4,7 @@
 class tomcat::install (
   $install_java           =   true,
   $package_provider       =   undef,
-  $package_name           =   'apache-tomcat'
+  $package_name           =   'apache-tomcat',
   $additional_packages    =   undef,
   $version                =   '7.0.50',
   $archive_download_dir   =   '/usr/local/src',
