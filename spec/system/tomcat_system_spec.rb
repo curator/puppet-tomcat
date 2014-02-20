@@ -21,7 +21,8 @@ describe 'base tests:' do
   it 'my class should work with no errors' do
     pp = <<-EOS
       class { 'tomcat':
-        package_name => 'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz'
+        package_name     => 'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
+        package_provider => 'archive'
       }
     EOS
 
