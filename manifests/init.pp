@@ -62,6 +62,10 @@ class tomcat (
     fail('Failed because "package_name" parameter is required')
   }
 
+  if $tomcat_version !~ /^\d+.*$/ {
+    fail('Failed because "tomcat_version" must start with a digit')
+  }
+
   if ! is_array($java_opts) {
     fail('Failed because "java_opts" parameter must be an array')
   }
