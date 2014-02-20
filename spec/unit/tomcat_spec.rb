@@ -78,7 +78,10 @@ describe 'tomcat', :type => :class do
         }
       end
 
-      pending 'It should run the install'
+      it 'should commit to installing' do
+        expect contain_tomcat__install()
+      end
+
       pending 'It should do some configuration'
 
     end # End things are setup properly
