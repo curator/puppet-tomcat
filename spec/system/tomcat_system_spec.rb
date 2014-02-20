@@ -20,7 +20,9 @@ describe 'base tests:' do
   # Using puppet_apply as a helper
   it 'my class should work with no errors' do
     pp = <<-EOS
-      class { 'tomcat': }
+      class { 'tomcat':
+        package_name => 'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz'
+      }
     EOS
 
     # Run it twice and test for idempotency

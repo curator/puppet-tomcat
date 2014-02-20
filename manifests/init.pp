@@ -24,8 +24,8 @@
 # === Examples
 #
 #  class { tomcat:
-#    install_java   => false,
 #    tomcat_version => '7.0.50',
+#    provider       => 'archive',
 #    source         => 'http://peaches.me/tomcat/apache-tomcat-7.0.50.tar.gz'
 #  }
 #
@@ -42,9 +42,11 @@ class tomcat (
   $install_java           =   true,
   $package_provider       =   undef,
   $package_name           =   undef,
+  $package_version        =   undef,
   $additional_packages    =   undef,
-  $version                =   '7.0.50',
+  $tomcat_version         =   '7.0.50',
   $java_home              =   "/usr/lib/jvm/jre-1.7.0-openjdk.${::architecture}",
+  $java_opts              =   [],
   $archive_download_dir   =   '/usr/local/src',
   $archive_target_dir     =   undef,
   $manage_user            =   true,
@@ -55,16 +57,23 @@ class tomcat (
   $remove_default_manager =   true
   ) inherits tomcat::params {
 
+# Take care of required stuffs
   if ! $package_name {
     fail('Failed because "package_name" parameter is required')
   }
 
+  if ! is_array($java_opts) {
+    fail('Failed because "java_opts" parameter must be an array')
+  }
+
+# Install tomcat
   class { 'tomcat::install':
     install_java           => $install_java,
     package_provider       => $package_provider,
     package_name           => $package_name,
+    package_version        => $package_version,
     additional_packages    => $additional_packages,
-    version                => $version,
+    tomcat_version         => $tomcat_version,
     archive_download_dir   => $archive_download_dir,
     archive_target_dir     => $archive_target_dir,
     manage_user            => $manage_user,

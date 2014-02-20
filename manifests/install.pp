@@ -5,8 +5,9 @@ class tomcat::install (
   $install_java           =   true,
   $package_provider       =   undef,
   $package_name           =   'apache-tomcat',
+  $package_version        =   undef,
   $additional_packages    =   undef,
-  $version                =   '7.0.50',
+  $tomcat_version         =   '7.0.50',
   $archive_download_dir   =   '/usr/local/src',
   $archive_target_dir     =   undef,
   $manage_user            =   true,
@@ -16,6 +17,14 @@ class tomcat::install (
   $remove_default_apps    =   true,
   $remove_default_manager =   true
   ) {
+
+
+# Manage interpolation of tomcat_version and package_version, defaulting package to tomcat
+  if ! $package_version {
+    $package_version_real = $tomcat_version
+  } else {
+    $package_version_real = $package_version
+  }
 
   if $install_java {
 
@@ -37,7 +46,7 @@ class tomcat::install (
   if $package_provider {
     if $package_provider == 'archive' {
       class { 'tomcat::install::archive':
-        version                =>  $version,
+        version                =>  $tomcat_version,
         package_name           =>  $package_name,
         archive_download_dir   =>  $archive_download_dir,
         archive_target_dir     =>  $archive_target_dir,
@@ -50,7 +59,7 @@ class tomcat::install (
       }
     } else {
       package { $package_name:
-        ensure    => $version,
+        ensure    => $package_version_real,
         provider  => $package_provider
       }
 
@@ -61,7 +70,16 @@ class tomcat::install (
         }
       }
     }
+  } else {
+    package { $package_name:
+      ensure      => $package_version_real
+    }
+    if $additional_packages {
+      package { $additional_packages:
+        ensure    => installed,
+        provider  => $package_provider
+      }
+    }
   }
-
 
 } # End of class
