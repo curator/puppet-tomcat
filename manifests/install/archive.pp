@@ -47,6 +47,7 @@ class tomcat::install::archive (
     url              => $package_name,
     follow_redirects => true,
     extension        => 'tar.gz',
+    checksum         => false,
     src_target       => $archive_download_dir,
     target           => $target_dir
   }
