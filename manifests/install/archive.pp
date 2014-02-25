@@ -98,7 +98,9 @@ class tomcat::install::archive (
     target  => "${target_dir}/bin/catalina.sh"
   }
 
-  Group[$tomcat_group] -> User[$tomcat_user]
-
+  # Relationships
+  Group[$tomcat_group]                -> User[$tomcat_user]
+  User[$tomcat_user]                  -> Archive["apache-tomcat-${version}"]
+  Archive["apache-tomcat-${version}"] -> File[$target_dir]
 }
 
