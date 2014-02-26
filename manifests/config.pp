@@ -24,7 +24,7 @@ class tomcat::config (
       ensure  => file,
       owner   => $tomcat_user,
       group   => $tomcat_group,
-      content => inline_template('tomcat/setenv.sh.erb'),
+      content => template('tomcat/setenv.sh.erb'),
       mode    => '0555'
   }
 

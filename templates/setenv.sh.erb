@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-<% if @tomcat::config::java_home %>
-JAVA_HOME=<%= @tomcat::config %>
+<% if @java_home %>
+JAVA_HOME=<%= @java_home %>
 <% end %>
-<% if @tomcat::config::java_opts_string %>
-JAVA_OPTS="<%= @tomcat::config::java_opts_string %>"
+<% if @java_opts_string %>
+JAVA_OPTS="<%= @java_opts_string %>"
 <% end %>
-<% if @tomcat::config::path %>
-PATH="<%= @tomcat::config::path %>"
+<% if @path %>
+PATH="<%= @path %>"
 <% end %>
