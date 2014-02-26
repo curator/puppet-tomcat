@@ -1,4 +1,4 @@
-name    'puppet-tomcat'
+name    'curator-tomcat'
 version '0.1.0'
 source 'git://github.com/curator/puppet-tomcat.git'
 author 'preston.norvell@gettyimages.com'
