@@ -8,4 +8,3 @@ forge 'http://forge.puppetlabs.com'
 
 mod 'puppetlabs/stdlib'
 mod 'camptocamp/archive', :git => 'https://github.com/curator/puppet-archive.git', :ref => 'fix_curl_commands'
-mod 'hunner/pry'
