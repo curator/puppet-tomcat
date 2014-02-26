@@ -56,18 +56,6 @@ describe 'tomcat', :type => :class do
         end
       end
 
-      context 'With a java_opts that is not an array' do
-        let :params do
-          {
-            :package_name => 'apache-tomcat',
-            :java_opts    => 'peaches'
-          }
-        end
-
-        it 'should raise an error because it has to be an array' do
-          expect { should compile }.to raise_error(Puppet::Error, /"java_opts" parameter must be an array/)
-        end
-      end
     end
 
     context 'When things are setup properly' do

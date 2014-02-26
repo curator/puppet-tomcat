@@ -45,8 +45,11 @@ class tomcat (
   $package_version        =   undef,
   $additional_packages    =   undef,
   $tomcat_version         =   '7.0.50',
+  $service_name           =   undef,
+  $path_envvar            =   undef,
+  $setenv_path            =   undef,
   $java_home              =   "/usr/lib/jvm/jre-1.7.0-openjdk.${::architecture}",
-  $java_opts              =   [],
+  $java_opts              =   ['-Djava.awt.headless=true', '-server'],
   $archive_download_dir   =   '/usr/local/src',
   $archive_target_dir     =   undef,
   $manage_user            =   true,
@@ -54,7 +57,8 @@ class tomcat (
   $manage_group           =   true,
   $tomcat_group           =   'tomcat',
   $remove_default_apps    =   true,
-  $remove_default_manager =   true
+  $remove_default_manager =   true,
+  $manage_setenv          =   false
   ) inherits tomcat::params {
 
 # Take care of required stuffs
@@ -64,10 +68,6 @@ class tomcat (
 
   if $tomcat_version !~ /^\d+.*$/ {
     fail('Failed because "tomcat_version" must start with a digit')
-  }
-
-  if ! is_array($java_opts) {
-    fail('Failed because "java_opts" parameter must be an array')
   }
 
 # Install tomcat
@@ -86,6 +86,18 @@ class tomcat (
     tomcat_group           => $tomcat_group,
     remove_default_apps    => $remove_default_apps,
     remove_default_manager => $remove_default_manager
+  }
+
+  if $manage_setenv {
+    class { 'tomcat::config':
+      java_home    => $java_home,
+      tomcat_user  => $tomcat_user,
+      tomcat_group => $tomcat_group,
+      java_opts    => $java_opts,
+      setenv_path  => $setenv_path,
+      path         => $path_envvar,
+      require      => Class['tomcat::install']
+    }
   }
 
 }
