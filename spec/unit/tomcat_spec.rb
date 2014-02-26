@@ -62,7 +62,9 @@ describe 'tomcat', :type => :class do
       let :params do
         {
           :package_name   => 'apache-tomcat',
-          :tomcat_version => '7.0.50'
+          :tomcat_version => '7.0.50',
+          :setenv_path    => '/usr/share/tomcat7/bin/setenv.sh',
+          :manage_setenv  => true
         }
       end
 
@@ -70,7 +72,9 @@ describe 'tomcat', :type => :class do
         expect contain_tomcat__install()
       end
 
-      pending 'It should do some configuration'
+      it 'should do some configuration' do
+        expect contain_tomcat__config()
+      end
 
     end # End things are setup properly
 
