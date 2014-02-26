@@ -9,4 +9,4 @@ project_page 'https://github.com/curator/puppet-tomcat'
 
 ## Add dependencies, if any:
 dependency 'puppetlabs/stdlib'
-dependency 'camptocamp/archive'
+#dependency 'camptocamp/archive'
