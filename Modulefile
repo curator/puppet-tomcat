@@ -8,5 +8,5 @@ description 'Puppet module for Apache Tomcat'
 project_page 'https://github.com/curator/puppet-tomcat'
 
 ## Add dependencies, if any:
-dependency 'puppetlabs/stdlib', '>= 2.4.0'
-dependency 'puppetlabs/concat', '>= 1.0.0'
+dependency 'puppetlabs/stdlib'
+dependency 'camptocamp/archive'
