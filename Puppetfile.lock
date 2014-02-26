@@ -1,7 +1,6 @@
 FORGE
   remote: http://forge.puppetlabs.com
   specs:
-    hunner/pry (1.0.0)
     puppetlabs/stdlib (4.1.0)
 
 GIT
@@ -13,6 +12,5 @@ GIT
 
 DEPENDENCIES
   camptocamp/archive (>= 0)
-  hunner/pry (>= 0)
   puppetlabs/stdlib (>= 0)
 
