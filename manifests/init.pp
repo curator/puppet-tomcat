@@ -44,7 +44,7 @@ class tomcat (
   $package_name           =   undef,
   $package_version        =   undef,
   $additional_packages    =   undef,
-  $tomcat_version         =   '7.0.50',
+  $tomcat_version         =   undef,
   $service_name           =   undef,
   $path_envvar            =   undef,
   $setenv_path            =   undef,
@@ -67,7 +67,7 @@ class tomcat (
   }
 
   if $tomcat_version !~ /^\d+.*$/ {
-    fail('Failed because "tomcat_version" must start with a digit')
+    fail('Failed because "tomcat_version" is required and must start with a digit')
   }
 
 # Install tomcat

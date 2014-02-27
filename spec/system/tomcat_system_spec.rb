@@ -23,6 +23,7 @@ describe 'base tests:' do
       class { 'tomcat':
         package_name     => 'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.50/bin/apache-tomcat-7.0.50.tar.gz',
         package_provider => 'archive',
+        tomcat_version   => '7.0.50',
         setenv_path      => '/usr/share/tomcat7/bin/setenv.sh',
         manage_setenv    => true
       }

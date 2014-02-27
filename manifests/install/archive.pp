@@ -16,7 +16,7 @@ class tomcat::install::archive (
   ) {
 
   $tomcat_maj_version = regsubst($version, '^([0-9]+)[.].*$', '\1')
-  $tomcat_expanded_dir = inline_template('<%= File.basename(@package_name,".tar.gz") %>')
+  $tomcat_expanded_dir = inline_template('<%=File.basename(@package_name,".tar.gz")%>')
   $tomcat_install_dir = "${archive_target_dir}/${tomcat_expanded_dir}"
 
   archive { "apache-tomcat-${version}":

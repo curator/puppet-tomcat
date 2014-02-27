@@ -16,6 +16,8 @@ class tomcat::config (
       $java_opts_string = join(flatten($java_opts), ' ')
     } elsif is_string($java_opts) {
       $java_opts_string = $java_opts
+    } else {
+      $java_opts_string = undef
     }
   }
 

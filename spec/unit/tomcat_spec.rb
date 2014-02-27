@@ -52,7 +52,7 @@ describe 'tomcat', :type => :class do
         end
 
         it 'should raise an error' do
-          expect { should compile }.to raise_error(Puppet::Error, /"tomcat_version" must start with a digit/)
+          expect { should compile }.to raise_error(Puppet::Error, /"tomcat_version" is required and must start with a digit/)
         end
       end
 
