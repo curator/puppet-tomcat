@@ -1,16 +1,16 @@
 FORGE
-  remote: http://forge.puppetlabs.com
+  remote: https://forgeapi.puppetlabs.com
   specs:
-    puppetlabs/stdlib (4.1.0)
+    puppetlabs-stdlib (4.3.2)
 
 GIT
   remote: https://github.com/curator/puppet-archive.git
   ref: fix_curl_commands
   sha: d378fe5e9d61381976a951134f4aaad9f3af854b
   specs:
-    camptocamp/archive (0.0.1)
+    camptocamp-archive (0.0.1)
 
 DEPENDENCIES
-  camptocamp/archive (>= 0)
-  puppetlabs/stdlib (>= 0)
+  camptocamp-archive (>= 0)
+  puppetlabs-stdlib (>= 0)
 
